@@ -1,0 +1,79 @@
+<h1>Todo</h1>
+
+<div class="container">
+
+<div class="alert alert-warning" *ngIf = "description.dirty && description.invalid" >Enter Valid Description</div>
+<div class="alert alert-warning" *ngIf = "targetDate.dirty && targetDate.invalid" >Enter Valid Target Date</div>
+
+  <form (ngSubmit) = "!todoForm.invalid && saveTodo()" #todoForm = "ngForm" >
+    <fieldset class="form-group" >
+
+      <label>Description</label>
+      <input 
+      #description = "ngModel"
+      minlength="5"
+      name="description" 
+      type="text" [(ngModel)]="todo.description" class="form-control" required = "required">
+      
+    </fieldset>
+
+
+    <fieldset class="form-group">
+
+      <label> Target Date</label>
+      <input 
+      #targetDate = "ngModel"
+      name="date" 
+      type="date" 
+      [ngModel]="todo.date | date : 'yyyy-MM-dd'"
+      (ngModelChange)="todo.date = $event"
+      
+      class="form-control" 
+      required = "required"
+      >
+      
+    </fieldset>
+
+    <!-- <fieldset class="form-group">
+
+      <label> Due Date</label>
+      <input 
+      #dueDate1 = "ngModel"
+      name="date" 
+      type="date" 
+      [ngModel]="dueDate | date : 'yyyy-MM-dd'"
+      (ngModelChange)="dueDate = $event"
+      
+      class="form-control" 
+      required = "required"
+      >
+      
+    </fieldset>
+
+    <fieldset class="form-group" >
+
+      <label>Priority</label>
+      <input 
+      #priority1 = "ngModel"
+      minlength="5"
+      name="description" 
+      type="text" [(ngModel)]="priority" class="form-control" required = "required">
+      
+    </fieldset>
+     -->
+
+    <button  type = "submit" class = "btn btn-success" >Save</button>
+
+  </form>
+
+</div>
+<!-- <br>
+<div class="container" *ngIf = 'done'>
+  <label>Description : {{todo.description}}</label><br><br>
+  <label>Target Date : {{todo.targetDate}}</label><br><br>
+  <label>Due Date : {{dueDate}}</label><br><br>
+  <label>Priority : {{priority}}</label><br><br>
+</div> -->
+
+
+
